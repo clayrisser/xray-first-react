@@ -1,0 +1,70 @@
+{
+  "name": "xray-first-react",
+  "version": "0.0.1",
+  "description": "React component to implement the xray ui development strategy",
+  "keywords": [
+    "xray-first-react",
+    "xray",
+    "react",
+    "ui",
+    "development",
+    "strategy",
+    "component"
+  ],
+  "homepage": "https://github.com/codejamninja/xray-first-react",
+  "bugs": {
+    "url": "https://github.com/codejamninja/xray-first-react/issues",
+    "email": "jam@codejam.ninja"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Jam Risser",
+    "email": "jam@codejam.ninja",
+    "url": "https://codejam.ninja"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codejamninja/xray-first-react"
+  },
+  "scripts": {
+    "build": "babel src -d lib",
+    "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/*",
+    "format": "prettier --write ./src/**/*.js",
+    "lint": "npm run format && eslint ./",
+    "lint:fix": "npm run format && eslint --fix ./",
+    "prepublish": "npm run clean && npm run build",
+    "start": "parcel example/index.html"
+  },
+  "dependencies": {
+    "@babel/preset-react": "^7.0.0",
+    "autobind-decorator": "^2.3.1",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^9.0.0",
+    "babel-preset-everything": "^0.1.2",
+    "eslint": "^5.5.0",
+    "eslint-config-jam": "^0.1.2",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "parcel-bundler": "^1.10.3"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "eslintIgnore": [
+    "lib"
+  ]
+}
