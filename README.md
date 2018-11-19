@@ -27,7 +27,26 @@ npm install --save xray-first-react
 
 ## Usage
 
-[Contribute](https://github.com/codejamninja/xray-first-react/blob/master/CONTRIBUTING.md) usage docs
+```js
+import React, { Component } from 'react';
+import { XrayProvider, Xray } from 'xray-first-react';
+
+const { env } = process;
+
+export default class App extends Component {
+  render() {
+    return (
+      <XrayProvider enabled={env.NODE_ENV === 'true'}>
+        <Xray label="content">
+          <div>
+            Hello, world
+          </div>
+        </Xray>
+      </XrayProvider>
+    )
+  }
+}
+```
 
 
 ## Support
