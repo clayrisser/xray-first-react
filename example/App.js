@@ -6,8 +6,7 @@ export default class App extends Component {
     return (
       <XrayProvider enabled>
         <Xray
-          label="Hello"
-          color="orange"
+          label="content"
           height="50px"
           style={{
             backgroundColor: 'red',

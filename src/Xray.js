@@ -1,7 +1,11 @@
+import ColorHash from 'color-hash';
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import autobind from 'autobind-decorator';
+import invertColor from 'invert-color';
 import { XrayContext } from './XrayProvider';
+
+const colorHash = new ColorHash();
 
 @autobind
 export default class Xray extends Component {
@@ -21,6 +25,13 @@ export default class Xray extends Component {
     style: {},
     width: '100px'
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      color: props.color || colorHash.hex(props.label)
+    };
+  }
 
   renderContext(context) {
     const enabled = context?.enabled;
@@ -42,7 +53,7 @@ export default class Xray extends Component {
         {...props}
         style={{
           ...props.style,
-          backgroundColor: this.props.color,
+          backgroundColor: this.state.color,
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
           borderBottomWidth: '0px',
@@ -52,10 +63,14 @@ export default class Xray extends Component {
           borderTopRightRadius: 0,
           borderTopWidth: '0px',
           height: this.props.height,
-          width: this.props.width
+          width: this.props.width,
+          color: invertColor(this.state.color, {
+            black: '#3a3a3a',
+            white: '#fafafa'
+          })
         }}
       >
-        {this.props.label}
+        <h3>{this.props.label}</h3>
       </div>
     );
   }
