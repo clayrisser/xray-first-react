@@ -12,18 +12,18 @@ export default class Xray extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
-    height: PropTypes.string,
     label: PropTypes.string.isRequired,
-    style: PropTypes.object,
-    width: PropTypes.string
+    minHeight: PropTypes.string,
+    minWidth: PropTypes.string,
+    style: PropTypes.object
   };
 
   static defaultProps = {
     children: null,
     className: '',
-    height: '100px',
-    style: {},
-    width: '100px'
+    minHeight: '0px',
+    minWidth: '0px',
+    style: {}
   };
 
   constructor(props) {
@@ -45,9 +45,9 @@ export default class Xray extends Component {
     const props = { ...this.props };
     delete props.children;
     delete props.color;
-    delete props.height;
     delete props.label;
-    delete props.width;
+    delete props.minHeight;
+    delete props.minWidth;
     return (
       <div
         {...props}
@@ -62,15 +62,16 @@ export default class Xray extends Component {
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
           borderTopWidth: '0px',
-          height: this.props.height,
-          width: this.props.width,
+          minHeight: this.props.minHeight,
+          minWidth: this.props.minWidth,
           color: invertColor(this.state.color, {
             black: '#3a3a3a',
             white: '#fafafa'
           })
         }}
       >
-        <h3>{this.props.label}</h3>
+        <div>{this.props.label}</div>
+        {this.props.children}
       </div>
     );
   }
