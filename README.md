@@ -2,7 +2,7 @@
 
 [![GitHub stars](https://img.shields.io/github/stars/codejamninja/xray-first-react.svg?style=social&label=Stars)](https://github.com/codejamninja/xray-first-react)
 
-> React component to implement the xray ui development strategy
+> build react applications using the xray first design approach
 
 Please ★ this repo if you found it useful ★ ★ ★
 
