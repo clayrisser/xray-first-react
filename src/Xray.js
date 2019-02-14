@@ -40,10 +40,9 @@ export default class Xray extends Component {
     const showLabels = context?.showLabels;
     const hideContent = context?.hideContent;
     if (!enabled) {
-      console.log(hideContent);
       return (
         <div className={this.props.className} style={this.props.style}>
-          {hideContent ? <div /> : this.props.children}
+          {this.props.children}
         </div>
       );
     }
@@ -76,9 +75,30 @@ export default class Xray extends Component {
         }}
       >
         {showLabels ? <div>{this.props.label}</div> : <div />}
-        {this.props.children}
+        {hideContent ? this.getXrayTree(this) : this.props.children}
       </div>
     );
+  }
+
+  getXrayTree(node, tree = []) {
+    if (this.isXray(node)) {
+      tree.push(node);
+    } else if (node.props?.children) {
+      const { children } = node.props;
+      if (Array.isArray(children)) {
+        children.map(node => {
+          this.getXrayTree(node, tree);
+          return node;
+        });
+      } else {
+        this.getXrayTree(children, tree);
+      }
+    }
+    return tree;
+  }
+
+  isXray(node) {
+    return node?.type?.name === 'Xray';
   }
 
   render() {
