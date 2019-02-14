@@ -35,7 +35,7 @@
     "build:example": "parcel build example/index.html",
     "build:module": "babel src -d lib",
     "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/*",
-    "deploy": "gh-pages -d dist",
+    "deploy": "npm run build && gh-pages -d dist",
     "format": "prettier --write ./src/**/*.js",
     "lint": "npm run format && eslint ./",
     "lint:fix": "npm run format && eslint --fix ./",
