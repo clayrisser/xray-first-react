@@ -23,8 +23,8 @@ export default class Xray extends Component {
     children: null,
     className: '',
     color: null,
-    minHeight: '0px',
-    minWidth: '0px',
+    minHeight: null,
+    minWidth: null,
     style: {}
   };
 
@@ -74,6 +74,10 @@ export default class Xray extends Component {
     delete props.label;
     delete props.minHeight;
     delete props.minWidth;
+    const color = invertColor(this.state.color, {
+      black: '#3a3a3a',
+      white: '#fafafa'
+    });
     return (
       <div
         {...props}
@@ -82,18 +86,12 @@ export default class Xray extends Component {
           backgroundColor: this.state.color,
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
-          borderBottomWidth: '0px',
-          borderLeftWidth: '0px',
-          borderRightWidth: '0px',
           borderTopLeftRadius: 0,
           borderTopRightRadius: 0,
-          borderTopWidth: '0px',
-          minHeight: this.props.minHeight,
-          minWidth: this.props.minWidth,
-          color: invertColor(this.state.color, {
-            black: '#3a3a3a',
-            white: '#fafafa'
-          })
+          borderColor: color,
+          color,
+          ...(this.props.minHeight ? { minHeight: this.props.minHeight } : {}),
+          ...(this.props.minWidth ? { minWidth: this.props.minWidth } : {})
         }}
       >
         {showLabels ? <div>{this.props.label}</div> : <div />}
