@@ -35,6 +35,27 @@ export default class Xray extends Component {
     };
   }
 
+  getXrayTree(node, tree = []) {
+    if (this.isXray(node)) {
+      tree.push(node);
+    } else if (node.props?.children) {
+      const { children } = node.props;
+      if (Array.isArray(children)) {
+        children.map(node => {
+          this.getXrayTree(node, tree);
+          return node;
+        });
+      } else {
+        this.getXrayTree(children, tree);
+      }
+    }
+    return tree;
+  }
+
+  isXray(node) {
+    return node?.type?.name === 'Xray';
+  }
+
   renderContext(context) {
     const enabled = context?.enabled;
     const showLabels = context?.showLabels;
@@ -78,27 +99,6 @@ export default class Xray extends Component {
         {hideContent ? this.getXrayTree(this) : this.props.children}
       </div>
     );
-  }
-
-  getXrayTree(node, tree = []) {
-    if (this.isXray(node)) {
-      tree.push(node);
-    } else if (node.props?.children) {
-      const { children } = node.props;
-      if (Array.isArray(children)) {
-        children.map(node => {
-          this.getXrayTree(node, tree);
-          return node;
-        });
-      } else {
-        this.getXrayTree(children, tree);
-      }
-    }
-    return tree;
-  }
-
-  isXray(node) {
-    return node?.type?.name === 'Xray';
   }
 
   render() {
