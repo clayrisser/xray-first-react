@@ -32,7 +32,7 @@
   },
   "scripts": {
     "build": "npm run build:module && npm run build:example",
-    "build:example": "parcel build example/index.html",
+    "build:example": "parcel build --public-url ./ example/index.html",
     "build:module": "babel src -d lib",
     "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/*",
     "deploy": "npm run build && gh-pages -d dist",
