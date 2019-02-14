@@ -53,7 +53,8 @@ export default class Xray extends Component {
   }
 
   isXray(node) {
-    return node?.type?.name === 'Xray';
+    if (node === this) return false;
+    return node?.type === Xray;
   }
 
   renderContext(context) {
