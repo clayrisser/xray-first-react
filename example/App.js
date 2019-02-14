@@ -4,15 +4,24 @@ import { XrayProvider, Xray } from '../src';
 export default class App extends Component {
   render() {
     return (
-      <XrayProvider enabled>
+      <XrayProvider enabled hideContent>
         <Xray
-          label="content"
+          label="parent"
           style={{
             backgroundColor: 'red',
             borderRadius: 20
           }}
         >
-          Hello, world!
+          Hello
+          <Xray
+            label="child"
+            style={{
+              backgroundColor: 'blue',
+              borderRadius: 20
+            }}
+          >
+            World
+          </Xray>
         </Xray>
       </XrayProvider>
     );

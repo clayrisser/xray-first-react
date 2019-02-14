@@ -6,20 +6,26 @@ const XrayContext = createContext();
 export default class XrayProvider extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
-    enabled: PropTypes.bool
+    enabled: PropTypes.bool,
+    hideContent: PropTypes.bool,
+    showLabels: PropTypes.bool
   };
 
   static defaultProps = {
-    enabled: false
+    enabled: false,
+    hideContent: false,
+    showLabels: false
   };
 
   constext = {};
 
   render() {
-    const { enabled } = this.props;
+    const { enabled, hideContent, showLabels } = this.props;
     this.context = {
       ...this.context,
-      enabled
+      enabled,
+      hideContent,
+      showLabels
     };
     return (
       <XrayContext.Provider value={this.context}>

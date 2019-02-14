@@ -12,6 +12,7 @@ export default class Xray extends Component {
   static propTypes = {
     children: PropTypes.node,
     className: PropTypes.string,
+    color: PropTypes.string,
     label: PropTypes.string.isRequired,
     minHeight: PropTypes.string,
     minWidth: PropTypes.string,
@@ -21,6 +22,7 @@ export default class Xray extends Component {
   static defaultProps = {
     children: null,
     className: '',
+    color: null,
     minHeight: '0px',
     minWidth: '0px',
     style: {}
@@ -35,10 +37,13 @@ export default class Xray extends Component {
 
   renderContext(context) {
     const enabled = context?.enabled;
+    const showLabels = context?.showLabels;
+    const hideContent = context?.hideContent;
     if (!enabled) {
+      console.log(hideContent);
       return (
         <div className={this.props.className} style={this.props.style}>
-          {this.props.children}
+          {hideContent ? <div /> : this.props.children}
         </div>
       );
     }
@@ -70,7 +75,7 @@ export default class Xray extends Component {
           })
         }}
       >
-        <div>{this.props.label}</div>
+        {showLabels ? <div>{this.props.label}</div> : <div />}
         {this.props.children}
       </div>
     );
