@@ -9,8 +9,14 @@ Please ★ this repo if you found it useful ★ ★ ★
 
 ## Features
 
-* Automatically create colors
-* Change different xray views
+* Automatically generates colors to differentiate sections
+* Option to hide content to help zero in on styling
+* Options to show labels of sections
+
+
+## Demo
+
+View live demo at [codejamninja.github.io/xray-first-react](https://codejamninja.github.io/xray-first-react/)
 
 
 ## Installation
