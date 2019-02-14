@@ -31,8 +31,11 @@
     "url": "https://github.com/codejamninja/xray-first-react"
   },
   "scripts": {
-    "build": "babel src -d lib",
+    "build": "npm run build:module && npm run build:example",
+    "build:example": "parcel build example/index.html",
+    "build:module": "babel src -d lib",
     "clean": "git clean -fXd -e \\!node_modules -e \\!node_modules/**/*",
+    "deploy": "gh-pages -d dist",
     "format": "prettier --write ./src/**/*.js",
     "lint": "npm run format && eslint ./",
     "lint:fix": "npm run format && eslint --fix ./",
@@ -43,6 +46,7 @@
     "@babel/preset-react": "^7.0.0",
     "autobind-decorator": "^2.3.1",
     "color-hash": "^1.0.3",
+    "gh-pages": "^2.0.1",
     "invert-color": "^2.0.0",
     "prop-types": "^15.6.2",
     "react": "^16.6.3",
